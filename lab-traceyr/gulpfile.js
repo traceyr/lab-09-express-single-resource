@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const mocha = require('gulp-mocha');
 const eslint = require('gulp-eslint');
+const nodemon = require('gulp-nodemon');
 
 
 var testFiles = ['test/**/*.js'];
@@ -15,6 +16,13 @@ gulp.task('lint:all', () => {
 gulp.task('mocha:test', () => {
   gulp.src(testFiles)
   .pipe(mocha());
+});
+
+gulp.task('nodemon', () =>{
+  nodemon({script: 'server.js'})
+    .on('restart', () =>{
+      console.log('Restarted the Server');
+    });
 });
 
 gulp.task('watch:files', () => {

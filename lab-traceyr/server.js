@@ -1,11 +1,11 @@
 'use strict';
-// require('./model/constructor');
+
 const express = require('express');
-const Router = express.Router();
 let app = express();
+let router = require('./route/router');
 
-app.post();
+app.use('/api', router);
 
-module.exports = exports = app.listen(3000, function(){
-  console.log('Server Is On');
+module.exports = exports = app.listen(3002, function() {
+  console.log('Server is On');
 });
