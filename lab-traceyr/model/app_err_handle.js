@@ -24,3 +24,5 @@ AppError.error404 = function(message){
 AppError.error500 = function(message){
   return new AppError(message, 500, 'internal server error');
 };
+
+module.exports = exports = AppError;

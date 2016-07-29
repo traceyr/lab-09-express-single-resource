@@ -7,14 +7,32 @@ const expect = chai.expect;
 const request = chai.request;
 const server = require('../server');
 
-describe('initial setup correct', function(){
-  beforeEach(function(done){
-    server.listen('localhost:3000', done);
-  });
+describe('Testing', function(){
   after(function(done){
     server.close(done);
   });
-  it('test', function(){
-    expect(true).to.eql(true);
+  it('should return a 404 for POST', function(done){
+    request('localhost:3000')
+    .post('/api/coffee')
+    .send({
+      nothing: 'not right at all'
+    })
+    .end(function(err, res){
+      expect(res.status).to.eql(400);
+      expect(res.text).to.have.string('bad request');
+      done();
+    });
+  });
+  it('should return a 200 for POST', function(done){
+    request('localhost:3000')
+    .post('/api/coffee')
+    .send({
+      name: 'Americano'
+    })
+    .end(function(err, res){
+      expect(res.status).to.eql(200);
+      expect(res.text).to.have.string('Americano');
+      done();
+    });
   });
 });
