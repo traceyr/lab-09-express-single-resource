@@ -70,4 +70,13 @@ describe('Testing', function(){
     });
   });
 
+  it('should return a 400 for PUT', function(done){
+    request(server)
+    .put('/api/coffee/3211?name=ralph')
+    .end(function(err, res){
+      expect(res.status).to.eql(400);
+      expect(res.text).to.have.string('bad request');
+      done();
+    });
+  });
 });

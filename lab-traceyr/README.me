@@ -5,9 +5,27 @@
 -Run in the terminal npm install shortid
 -To run tests and lint files in the terminal: gulp
 -To start the server from the terminal run: node server.js
+
 -To create a correct POST request:
 --In one terminal in your root directory type: node server
---In a second terminal in your root directory type: http POST :3000/api/coffee name=bob
+--In a second terminal in your root directory type: http POST :3001/api/coffee name=bob
 -To create a failing POST request:
 --In one terminal in your root directory type: node server
---In a second terminal in your root directory type: http POST :3000/api/coffee something=nothing
+--In a second terminal in your root directory type: http POST :3001/api/coffee something=nothing
+
+-To create a correct GET request:
+--In one terminal in your root directory type: node server
+--In a second terminal in your root directory type: http GET :3001/api/coffee/1234
+-To create a failing GET request:
+--In one terminal in your root directory type: node server
+--In a second terminal in your root directory type: http GET :3001/api/coffee/3333 or http GET :3001/api/coffee
+To GET all:
+--In one terminal in your root directory type: node server
+--In a second terminal in your root directory type: http GET :3001/api/coffee/all
+
+-To create a failing PUT request:
+--In one terminal in your root directory type: node server
+--In a second terminal in your root directory type: http put :3001/api/coffee/4567897?name=save
+-To create a passing PUT request:(NOT WORKING YET)
+--In one terminal in your root directory type: node server
+--In a second terminal in your root directory type: http put :3001/api/coffee/4567?name=save

@@ -13,6 +13,11 @@ let coffeeObj = {
     id: 1234,
     name: 'cappuchino',
     createDate: 1020456
+  },
+  4567:{
+    id: 4567,
+    name: 'mocha',
+    createDate: 1020456
   }
 };
 
@@ -41,13 +46,34 @@ router.get('/coffee/:id', (req, res) =>{
     }
     if(key === req.params.id){
       console.log('Found drink');
-      return res.status(200).json(coffeeObj);
+      return res.status(200).json(coffeeObj[req.params.id]);
     }
   }
 });
 
-// router.put();
-//
-// router.delete();
+router.put('/coffee/:id', (req, res) =>{
+  for(let key in coffeeObj){
+    if(key !== req.params.id){
+      return res.sendError(appErr.error400('no body'));
+    }
+    if(key === req.params.id){
+      coffeeObj[req.params.id].name = req.body.name;
+      console.log('name updated');
+      return res.status(200).json(coffeeObj[req.params.id]);
+    }
+  }
+});
+
+router.delete('/coffee/:id', (req, res) =>{
+  for(let key in coffeeObj){
+    if(key !== req.params.id){
+      return res.sendError(appErr.error400('no body'));
+    }
+    if(key === req.params.id){
+      delete coffeeObj[req.params.id];
+      return res.status(200).json(coffeeObj);
+    }
+  }
+});
 
 module.exports = exports = router;
