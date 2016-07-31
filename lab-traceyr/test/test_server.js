@@ -79,4 +79,16 @@ describe('Testing', function(){
       done();
     });
   });
+
+  it('should return a 200 for PUT', function(done){
+    request(server)
+    .put('/api/coffee/1234')
+    .send({name: 'tea'})
+    .end(function(err, res){
+      expect(res.status).to.eql(200);
+      expect(res.text).to.have.string('tea');
+      done();
+    });
+  });
+
 });
