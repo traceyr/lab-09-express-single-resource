@@ -5,3 +5,9 @@
 -Run in the terminal npm install shortid
 -To run tests and lint files in the terminal: gulp
 -To start the server from the terminal run: node server.js
+-To create a correct POST request:
+--In one terminal in your root directory type: node server
+--In a second terminal in your root directory type: http POST :3000/api/coffee name=bob
+-To create a failing POST request:
+--In one terminal in your root directory type: node server
+--In a second terminal in your root directory type: http POST :3000/api/coffee something=nothing

@@ -21,6 +21,6 @@ let sendError = function(req, res, next){
 app.use(sendError);
 app.use('/api', router);
 
-module.exports = exports = app.listen(3000, function() {
+module.exports = exports = app.listen(3001, function() {
   console.log('Server is On');
 });
