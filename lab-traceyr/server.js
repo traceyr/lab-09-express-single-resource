@@ -1,8 +1,11 @@
 'use strict';
 
 const express = require('express');
+let fs = require('fs');
+let path = require('path');
 let AppError = require('./model/app_err_handle');
 let app = express();
+let morgan = require('morgan');
 let router = require('./route/router');
 
 let sendError = function(req, res, next){
@@ -18,6 +21,9 @@ let sendError = function(req, res, next){
   next();
 };
 
+let accessLogStream = fs.createWriteStream(path.join('./lib/morgan_log'), {flags: 'a'});
+
+app.use(morgan('combined', {stream: accessLogStream}));
 app.use(sendError);
 app.use('/api', router);
 
