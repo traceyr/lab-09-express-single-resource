@@ -9,13 +9,13 @@ var allFiles = ['index.js', 'server.js', 'test/**/*.js', 'lib/**/*.js', 'gulpfil
 
 gulp.task('lint:all', () => {
   gulp.src(allFiles)
-  .pipe(eslint())
-  .pipe(eslint.format());
+    .pipe(eslint())
+    .pipe(eslint.format());
 });
 
 gulp.task('mocha:test', () => {
   gulp.src(testFiles)
-  .pipe(mocha());
+    .pipe(mocha());
 });
 
 gulp.task('nodemon', () =>{
