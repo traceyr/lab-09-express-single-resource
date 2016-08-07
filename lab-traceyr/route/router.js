@@ -1,9 +1,8 @@
 'use strict';
-// require('./model/constructor');
+
 const Router = require('express').Router;
 const appErr = require('../model/app_err_handle');
 const Coffee = require('../model/coffee_const.js');
-// const debug = require('debug');
 const bodyParser = require('body-parser').json();
 
 let router = new Router();
@@ -40,39 +39,33 @@ router.get('/coffee/all', (req, res) =>{
 });
 
 router.get('/coffee/:id', (req, res) =>{
-  for(let key in coffeeObj){
-    if(key !== req.params.id){
-      return res.sendError(appErr.error404('not an id'));
-    }
-    if(key === req.params.id){
-      console.log('Found drink');
-      return res.status(200).json(coffeeObj[req.params.id]);
-    }
+  if(!coffeeObj[req.params.id]){
+    return res.sendError(appErr.error404('not an id'));
+  }
+  if(coffeeObj[req.params.id]){
+    console.log('Found drink');
+    return res.status(200).json(coffeeObj[req.params.id]);
   }
 });
 
 router.put('/coffee/:id', bodyParser, (req, res) =>{
-  for(let key in coffeeObj){
-    if(key !== req.params.id){
-      return res.sendError(appErr.error400('no body'));
-    }
-    if(key === req.params.id && req.body.name){
-      coffeeObj[req.params.id].name = req.body.name;
-      console.log('name updated');
-      return res.status(200).json(coffeeObj[req.params.id]);
-    }
+  if(!coffeeObj[req.params.id]){
+    return res.sendError(appErr.error400('no body'));
+  }
+  if(coffeeObj[req.params.id]){
+    coffeeObj[req.params.id].name = req.body.name;
+    console.log('name updated');
+    return res.status(200).json(coffeeObj[req.params.id]);
   }
 });
 
 router.delete('/coffee/:id', (req, res) =>{
-  for(let key in coffeeObj){
-    if(key !== req.params.id){
-      return res.sendError(appErr.error400('no body'));
-    }
-    if(key === req.params.id){
-      delete coffeeObj[req.params.id];
-      return res.status(200).json(coffeeObj);
-    }
+  if(!coffeeObj[req.params.id]){
+    return res.sendError(appErr.error400('no body'));
+  }
+  if(coffeeObj[req.params.id]){
+    delete coffeeObj[req.params.id];
+    return res.status(200).json(coffeeObj);
   }
 });
 

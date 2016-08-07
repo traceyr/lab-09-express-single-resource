@@ -41,11 +41,11 @@ describe('Testing', function(){
 
   it('should return a 200 for GET', function(done){
     request(server)
-      .get('/api/coffee/1234')
+      .get('/api/coffee/4567')
       .end(function(err, res){
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
-        expect(res.text).to.have.string('cappuchino');
+        expect(res.text).to.have.string('mocha');
         done();
       });
   });
